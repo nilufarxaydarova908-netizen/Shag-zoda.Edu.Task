@@ -1,72 +1,388 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-<meta charset="UTF-8">
-<title>Shahzoda Edu Task</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-body {font-family: Arial; margin:0; background:#f5f5f5;}
-header {background:#0ea5e9; color:white; text-align:center; padding:30px;}
-.container {padding:20px;}
-.card {
-  background:white;
-  padding:20px;
-  margin-bottom:15px;
-  border-radius:10px;
-}
-button {
-  background:#10b981;
-  color:white;
-  border:none;
-  padding:10px 15px;
-  border-radius:5px;
-  margin-top:10px;
-}
-</style>
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shahzoda Edu Task</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f8fb;
+      color: #1e293b;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0ea5e9, #10b981);
+      color: white;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 40px;
+    }
+
+    header p {
+      margin-top: 12px;
+      font-size: 18px;
+      opacity: 0.95;
+    }
+
+    .topbar {
+      max-width: 1200px;
+      margin: -24px auto 0;
+      padding: 0 16px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .search-box {
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 12px;
+    }
+
+    .search-box input,
+    .search-box select {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #dbe4ee;
+      border-radius: 12px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 28px auto;
+      padding: 0 16px 40px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      margin: 26px 0 18px;
+      text-align: center;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+    }
+
+    .cover {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .content {
+      padding: 18px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 23px;
+      line-height: 1.3;
+    }
+
+    .desc {
+      color: #475569;
+      font-size: 15px;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 14px;
+    }
+
+    .preview-title {
+      font-weight: bold;
+      margin: 10px 0 10px;
+      font-size: 15px;
+    }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .preview-grid img {
+      width: 100%;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      background: #f8fafc;
+    }
+
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: bold;
+      color: #059669;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #10b981;
+      color: white;
+      text-decoration: none;
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .info {
+      background: white;
+      border-radius: 18px;
+      padding: 24px;
+      margin-top: 30px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    .info h2 {
+      margin-top: 0;
+      font-size: 26px;
+    }
+
+    .info p {
+      color: #475569;
+      line-height: 1.7;
+    }
+
+    footer {
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 22px 16px;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 700px) {
+      .search-box {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 30px;
+      }
+
+      .bottom {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
 <body>
 
-<header>
-<h1>Shahzoda Edu Task</h1>
-<p>Ilmiy ishlar va ta'lim xizmatlari platformasi</p>
-</header>
+  <header>
+    <h1>Shahzoda Edu Task</h1>
+    <p>Ilmiy ishlar, slaydlar, metodik qo‘llanmalar va buyurtma xizmatlari platformasi</p>
+  </header>
 
-<div class="container">
+  <div class="topbar">
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Qidiruv: masalan, STEAM, tarbiya, boshlang‘ich ta’lim..." onkeyup="filterProducts()" />
+      <select id="categorySelect" onchange="filterProducts()">
+        <option value="">Barcha kategoriyalar</option>
+        <option value="Slaydlar">Slaydlar</option>
+        <option value="Metodik qo‘llanma">Metodik qo‘llanma</option>
+        <option value="Ilmiy ish">Ilmiy ish</option>
+      </select>
+    </div>
+  </div>
 
-<div class="card">
-<h2>Ilmiy ishlar</h2>
-<p>Kurs ishi, diplom, maqolalar</p>
-<a href="https://t.me/nilufarxaydarova" target="_blank">
-<button>Sotib olish</button>
-</a>
-</div>
+  <div class="container">
+    <h2 class="section-title">Mahsulotlar</h2>
 
-<div class="card">
-<h2>Slaydlar</h2>
-<p>Tayyor prezentatsiyalar</p>
-<a href="https://t.me/nilufarxaydarova" target="_blank">
-<button>Sotib olish</button>
-</a>
-</div>
+    <div class="products" id="products">
 
-<div class="card">
-<h2>Metodik qo‘llanmalar</h2>
-<p>Dars ishlanmalar</p>
-<a href="https://t.me/nilufarxaydarova" target="_blank">
-<button>Sotib olish</button>
-</a>
-</div>
+      <div class="card product" data-title="Boshlang‘ich ta’lim uchun STEAM slaydlar to‘plami" data-category="Slaydlar">
+        <img class="cover" src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80" alt="STEAM slaydlar">
+        <div class="content">
+          <span class="badge">Slaydlar</span>
+          <h3>Boshlang‘ich ta’lim uchun STEAM slaydlar to‘plami</h3>
+          <div class="desc">Tayyor, chiroyli va darsga moslashtirilgan prezentatsiya materiali. Boshlang‘ich ta’lim talabalari va o‘qituvchilari uchun.</div>
+          <div class="meta">
+            <span>Format: PDF / PPTX</span>
+            <span>Betlar: 18</span>
+          </div>
+          <div class="preview-title">Preview (1–3 bet)</div>
+          <div class="preview-grid">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=500&q=80" alt="preview 1">
+            <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=500&q=80" alt="preview 2">
+            <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=500&q=80" alt="preview 3">
+          </div>
+          <div class="bottom">
+            <div class="price">10 000 so‘m</div>
+            <a class="btn" href="https://t.me/nilufarxaydarova" target="_blank">Sotib olish</a>
+          </div>
+        </div>
+      </div>
 
-<div class="card">
-<h2>Buyurtma berish</h2>
-<p>Individual xizmatlar</p>
-<a href="https://t.me/nilufarxaydarova" target="_blank">
-<button>Buyurtma berish</button>
-</a>
-</div>
+      <div class="card product" data-title="Tarbiya fanidan metodik qo‘llanma" data-category="Metodik qo‘llanma">
+        <img class="cover" src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=80" alt="Metodik qo‘llanma">
+        <div class="content">
+          <span class="badge">Metodik qo‘llanma</span>
+          <h3>Tarbiya fanidan metodik qo‘llanma</h3>
+          <div class="desc">Tarbiyaviy mashg‘ulotlar uchun metodik tavsiyalar, dars ishlanmalari va amaliy ko‘rsatmalar to‘plami.</div>
+          <div class="meta">
+            <span>Format: PDF</span>
+            <span>Betlar: 24</span>
+          </div>
+          <div class="preview-title">Preview (1–3 bet)</div>
+          <div class="preview-grid">
+            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=500&q=80" alt="preview 1">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=500&q=80" alt="preview 2">
+            <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=500&q=80" alt="preview 3">
+          </div>
+          <div class="bottom">
+            <div class="price">10 000 so‘m</div>
+            <a class="btn" href="https://t.me/nilufarxaydarova" target="_blank">Sotib olish</a>
+          </div>
+        </div>
+      </div>
 
-</div>
+      <div class="card product" data-title="Ilmiy maqola yozish bo‘yicha namuna paket" data-category="Ilmiy ish">
+        <img class="cover" src="https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=1200&q=80" alt="Ilmiy ish">
+        <div class="content">
+          <span class="badge">Ilmiy ish</span>
+          <h3>Ilmiy maqola yozish bo‘yicha namuna paket</h3>
+          <div class="desc">Ilmiy maqola tuzilmasi, annotatsiya namunasi, kalit so‘zlar va adabiyotlar rasmiylashtirish bo‘yicha tayyor material.</div>
+          <div class="meta">
+            <span>Format: PDF / DOCX</span>
+            <span>Betlar: 12</span>
+          </div>
+          <div class="preview-title">Preview (1–3 bet)</div>
+          <div class="preview-grid">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=500&q=80" alt="preview 1">
+            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=500&q=80" alt="preview 2">
+            <img src="https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?auto=format&fit=crop&w=500&q=80" alt="preview 3">
+          </div>
+          <div class="bottom">
+            <div class="price">10 000 so‘m</div>
+            <a class="btn" href="https://t.me/nilufarxaydarova" target="_blank">Sotib olish</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card product" data-title="Boshlang‘ich ta’lim uchun slaydlar jamlanmasi" data-category="Slaydlar">
+        <img class="cover" src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=80" alt="Boshlang‘ich slaydlar">
+        <div class="content">
+          <span class="badge">Slaydlar</span>
+          <h3>Boshlang‘ich ta’lim uchun slaydlar jamlanmasi</h3>
+          <div class="desc">Ma’ruza, seminar va himoya uchun tayyor dizaynli slaydlar. Oson tahrir qilinadi va darsga mos.</div>
+          <div class="meta">
+            <span>Format: PPTX</span>
+            <span>Betlar: 15</span>
+          </div>
+          <div class="preview-title">Preview (1–3 bet)</div>
+          <div class="preview-grid">
+            <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=500&q=80" alt="preview 1">
+            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=500&q=80" alt="preview 2">
+            <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=500&q=80" alt="preview 3">
+          </div>
+          <div class="bottom">
+            <div class="price">10 000 so‘m</div>
+            <a class="btn" href="https://t.me/nilufarxaydarova" target="_blank">Sotib olish</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="info">
+      <h2>Mahsulotni qanday joylaysiz?</h2>
+      <p>
+        Hozircha bu demovariant. Keyin siz har bir mahsulot uchun:
+        nomini, tavsifini, narxini, bet sonini va preview rasmlarini almashtirib borasiz.
+        Preview uchun 1–3 betni rasm qilib yuklaysiz, xaridor ko‘rib turadi.
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 Shahzoda Edu Task | Telegram orqali bog‘lanish va buyurtma berish mumkin
+  </footer>
+
+  <script>
+    function filterProducts() {
+      const search = document.getElementById("searchInput").value.toLowerCase();
+      const category = document.getElementById("categorySelect").value.toLowerCase();
+      const products = document.querySelectorAll(".product");
+
+      products.forEach((product) => {
+        const title = product.getAttribute("data-title").toLowerCase();
+        const cat = product.getAttribute("data-category").toLowerCase();
+
+        const matchSearch = title.includes(search);
+        const matchCategory = category === "" || cat === category;
+
+        if (matchSearch && matchCategory) {
+          product.style.display = "block";
+        } else {
+          product.style.display = "none";
+        }
+      });
+    }
+  </script>
 
 </body>
 </html>
